@@ -7,13 +7,17 @@ const instance = axios.create({
 
 export const toDoApi = {
     getToDos() {
-        debugger
         return instance.get(`todos`)
             .then(res => res.data)
     },
-    updateToDos(todoId) {
+    completeToDos(todo) {
         debugger
-        return instance.put(`todos/${todoId}`)
+        return instance.put(`todos/${todo.id}`, {...todo, completed: true})
             .then(res => res.data)
-    }
+    },
+    uncompleteToDos(todo) {
+        debugger
+        return instance.put(`todos/${todo.id}`, {...todo, completed: false})
+            .then(res => res.data)
+    },
 }

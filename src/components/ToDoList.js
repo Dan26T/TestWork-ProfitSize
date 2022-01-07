@@ -14,8 +14,8 @@ export const ToDoList = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-    let toggleTodos = (todoId) => {
-        props.updateTodo(todoId)
+    let toggleTodos = (todo) => {
+        props.updateTodo(todo)
     }
 
     return <>
@@ -30,7 +30,7 @@ export const ToDoList = (props) => {
             if (t.id > (props.activePage - 1) * todosCount && t.id <= props.activePage * todosCount) {
                 return <div key={t.id}>
                     <div className={s.checkbox}>
-                        <input id={t.id} className={s.checkbox_input} type="checkbox" onClick={(e) => {toggleTodos(t.id)}} />
+                        <input id={t.id} className={s.checkbox_input} type="checkbox" onClick={(e) => {toggleTodos(t)}} />
                         <label className={t.completed ? [s.checkbox_label, s.active].join(' ') : s.checkbox_label} htmlFor={t.id}>
                                 <div className={s.todoTitle}>{t.title}</div>
                         </label>

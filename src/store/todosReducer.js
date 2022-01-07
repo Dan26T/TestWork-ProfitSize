@@ -98,11 +98,15 @@ export const getTodos = () => {
         dispatch(setDescriptionsAC())
     }
 }
-export const updateTodo = (todoId) => {
-    return async (dispatch) => {
-        let response = await toDoApi.updateToDos(todoId)
-        dispatch(toggleTodoAC(todoId))
-    }
+export const updateTodo = (todo) => {
+    if (todo.completed) return async (dispatch) => {
+            let response = await toDoApi.uncompleteToDos(todo)
+            dispatch(toggleTodoAC(todo.id))
+        }
+    else return async (dispatch) => {
+            let response = await toDoApi.completeToDos(todo)
+            dispatch(toggleTodoAC(todo.id))
+        }
 }
 
 
